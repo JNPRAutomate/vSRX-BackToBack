@@ -56,4 +56,4 @@ To use this lab with VMware Fusion or Workstation you must first purchase and in
 
 **VM Access Information**
 
--	[VM Host Passwords](https://github.com/JNPRAutomate/vSRX-Passthrough/blob/master/docs/vmpasswords.md)
+-	[VM Host Passwords](https://github.com/JNPRAutomate/vSRX-BackToBack/blob/master/docs/vmpasswords.md)

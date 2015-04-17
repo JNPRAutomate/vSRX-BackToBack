@@ -69,7 +69,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "srx1" do |srx|
     srx.vm.box = "juniper/ffp-12.1X47-D20.7"
-    srx.vm.hostname = "vSRX"
+    srx.vm.hostname = "vSRX1"
     srx.vm.network "private_network",
                    ip: "172.16.0.1",
                    nic_type: 'virtio',
@@ -106,7 +106,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     srx.vm.provision "file", source: "vSRX-configs/nopolicy.cfg", destination: "/cf/root/nopolicy.cfg"
     srx.vm.provision :host_shell do |host_shell|
       # provides the inital configuration
-      host_shell.inline = 'vagrant ssh srx -c "/usr/sbin/cli -f /cf/root/vsrx1-inital.cfg'
+      host_shell.inline = 'vagrant ssh srx1 -c "/usr/sbin/cli -f /cf/root/vsrx1-inital.cfg"'
     end
   end
 
@@ -114,11 +114,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define "srx2" do |srx|
       srx.vm.box = "juniper/ffp-12.1X47-D20.7"
-      srx.vm.hostname = "vSRX"
+      srx.vm.hostname = "vSRX2"
       srx.vm.network "private_network",
                      ip: "192.168.0.1",
                      nic_type: 'virtio',
-                     virtualbox__intnet: "NetDevOps-Client"
+                     virtualbox__intnet: "NetDevOps-Server"
       srx.vm.network "private_network",
                      ip: "10.0.0.2",
                      nic_type: 'virtio',
@@ -151,7 +151,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       srx.vm.provision "file", source: "vSRX-configs/nopolicy.cfg", destination: "/cf/root/nopolicy.cfg"
       srx.vm.provision :host_shell do |host_shell|
         # provides the inital configuration
-        host_shell.inline = 'vagrant ssh srx -c "/usr/sbin/cli -f /cf/root/vsrx2-inital.cfg'
+        host_shell.inline = 'vagrant ssh srx2 -c "/usr/sbin/cli -f /cf/root/vsrx2-inital.cfg"'
       end
     end
 end
